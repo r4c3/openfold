@@ -1,13 +1,15 @@
 mod poker;
-
-use poker::card::{Card, Rank, Suit};
-use poker::hand::Hand;
+use poker::deck::Deck;
 
 fn main() {
-    let player_hand = Hand::new(vec![
-        Card::new(Suit::Spades, Rank::Ace),
-        Card::new(Suit::Spades, Rank::King),
-    ]);
+    let mut deck = Deck::new();
+    println!("Deck: {:?}", deck);
+    
+    deck.shuffle();
+    println!("Shuffled: {:?}", deck);
 
-    println!("Player's hand: {:?}", player_hand);
+    let Some(card) = deck.draw() else { todo!() };
+    println!("Drawn: {:?}", card);
+
+    println!("Left: {}", deck.cards.len());
 }
